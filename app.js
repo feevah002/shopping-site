@@ -34,7 +34,7 @@ app.set("view engine","ejs")
 //attatching publice directory for css
 app.use(express.static(__dirname+ "/public"));
 app.use(methodOverride("_method"));
-app.use(expressSession({
+app.use(expressSession({uherhioerhrei
   secret:"feevah the greatest",
   resave:false,
   saveUninitialized: false
