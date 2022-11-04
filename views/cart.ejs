@@ -14,17 +14,22 @@
                 </form>
               </p>
               <p> <%= cartItem.prodDesc %></p><!--work on this-->
+              <p> <%= cartItem.prodPrice %></p><!--work on this-->
+              <%total += cartItem.prodPrice%>
+              
             </div>
           </div> 
              <!-- end of first card -->
         </div>
         <!-- end of column  -->
-      <%});%>
+      <%} );%>
+     <p><%= total%></p> 
       
     </div>
       
       <div class="container">
         <div class = "row p-3 pb-3">
+          <div
           <div id = "checOutCont"class=" col-lg-8 col-xs-12 col-sm-12">
             <button id="CheckOut"class=" btn btn-danger">CheckOut</button>
           </div>

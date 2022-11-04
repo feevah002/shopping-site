@@ -18,7 +18,9 @@ const UserSchema = new mongoose.Schema({
    },
    prodImage: String,
    prodName: String,
-   ProdDesc:String
+   prodDesc:String,
+   prodPrice: Number,
+
 }],
   amountToBePaid: String,
   amountPaid: String,

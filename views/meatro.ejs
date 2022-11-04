@@ -27,6 +27,7 @@
 
               <p class="card-text"> <a id="prodName" href="/meatro/<%= product._id %>"> <%=product.prodName%></a> </p>
               <p> <%= product.prodDesc %></p><!--work on this-->
+              <p> <%= product.prodPrice %></p><!--work on this-->
               <!-- add to cart -->
               <form action="/meatro/<%= product._id %>/cart" method="POST">
                 <button type="submit" href=""class="btn btn-danger">Add to Cart</button>

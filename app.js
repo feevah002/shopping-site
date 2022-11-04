@@ -55,18 +55,19 @@ app.use(function(req, res, next){
 
 // Product.create({
 //   prodName : "XTRA LARGE",
-//   ProdDesc : "i dont wanna act likeeee",
-//   prodImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYUZU-KmW9AjtmpKh7m8nvw7QyDLwtrCYrt2-pkBGh&s"
+//   prodDesc : "i dont wanna act likeeee",
+//   prodImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYUZU-KmW9AjtmpKh7m8nvw7QyDLwtrCYrt2-pkBGh&s",
+//   prodPrice: 3500,
 // }, function (err,  created) {
 //   if(err){console.log(err)}
 //   else{console.log(created)}
-//   })
+//   })  
 
 // clearing the db 
 // Product.deleteMany({}, (err) => {
 //   if (err){console.log(err)}
 //   else{console.log("all prod deleted")}
-// })
+// });
 //routes
 
 //root route
@@ -88,13 +89,14 @@ app.get("/meatro", function(req, res, err){
 
 //view cart
 app.get("/meatro/:uid/cart", middlewareObj.isLoggedIn, function(req, res){
+  
   User.findById(req.user._id, function(err, user){
      if(err){
       console.log(err)
      }
      else{
-     
-      res.render("cart",{user: user})
+      let total = 0;
+      res.render("cart",{user: user, total: total})
      }
   })
 })
@@ -110,12 +112,14 @@ app.post("/meatro/:id/cart", middlewareObj.isLoggedIn, function(req,res, err){
         id : req.user._id,
         prodName : found.prodName,
         prodImage: found.prodImage,
-        ProdDesc : found.ProdDesc
+        prodDesc : found.prodDesc,
+        prodPrice : found.prodPrice,
       }
       User.findById(req.user._id, function(err, foundUser){
-        if(err){console.log(err);
+        if(err){console.log(err); 
           res.redirect("/");
         } else{
+          console.log(cart)
           foundUser.cart.push(cart);
           foundUser.save();
           res.redirect("/meatro");
