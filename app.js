@@ -1,6 +1,5 @@
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const { db } = require("./models/product.js");
 const Product = require("./models/product.js");
 const User = require("./models/user.js");
 const Comment = require("./models/comment.js"),
