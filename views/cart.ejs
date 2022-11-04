@@ -1,0 +1,38 @@
+<%- include ("partials/header.ejs")%>
+<div id = "showpage">
+  <div class="container">
+    <div class=" row p-4 pb-2 ">
+      <% user.cart.forEach(cartItem=>{%>
+        <div class="  col-lg-8 col-xs-12 col-sm-12">
+          <div class="card" >
+            <img src=" <%= cartItem.prodImage %>" class="card-img-top" alt="...">
+            <div class="card-body">
+    
+              <p class="card-text"> Product Name 
+                <form action= "/meatro/<%= user._id%>/cart/<%= cartItem._id %>" method="GET">
+                  <button class="btn btn-danger"> delete</button>
+                </form>
+              </p>
+              <p> <%= cartItem.prodDesc %></p><!--work on this-->
+            </div>
+          </div> 
+             <!-- end of first card -->
+        </div>
+        <!-- end of column  -->
+      <%});%>
+      
+    </div>
+      
+      <div class="container">
+        <div class = "row p-3 pb-3">
+          <div id = "checOutCont"class=" col-lg-8 col-xs-12 col-sm-12">
+            <button id="CheckOut"class=" btn btn-danger">CheckOut</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!-- end of container -->
+</div>
+
+ 
+    <%- include ("partials/footer.ejs")%>

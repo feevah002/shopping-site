@@ -1,0 +1,42 @@
+<%- include ("partials/header.ejs")%>
+<div id = "showpage">
+  <div class="container">
+    <div class=" row p-4 pb-2 ">
+      <div class="  col-lg-8 col-xs-12 col-sm-12">
+        <div class="card" >
+          <img src=" <%= product.prodImage %>" class="card-img-top" alt="...">
+          <div class="card-body">
+  
+            <p class="card-text"> Product Name </p>
+            <p> <%= product.prodDesc %></p><!--work on this-->
+          </div>
+        </div> 
+           <!-- end of first card -->
+      </div>
+      <div class=" col-lg-4 col-xs-12 col-sm-12">
+        <div class="bg-white">
+          here are some random stuffs that you make like
+        </div>
+        
+        
+      </div>
+    </div>
+      <!-- end of column  -->
+      <div class="bg-light fixed-bottom">
+        <div class="container">
+          <div class = "row p-4 pb-3">
+            <div class="  col-lg-4 col-xs-3 col-sm-3">
+              <button class="btn btn-danger show-cart">call order</button>
+            </div>
+            <div class="  col-lg-8 col-xs-9 col-sm-9">
+              <button class="show-cart btn btn-danger">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+       </div>
+  </div>
+  <!-- end of container -->
+</div>
+
+ 
+    <%- include ("partials/footer.ejs")%>

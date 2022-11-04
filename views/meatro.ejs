@@ -1,0 +1,58 @@
+<%- include ("partials/header.ejs")%>
+
+<div class="container">
+  <div class="p-3 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-3">
+        <h1 class="display-7 fw-bold">BRAND</h1>
+        <p class="col-md-8 fs-4">
+          The home of food 
+        </p>
+    </div>  
+  </div> <!--  "p-5 mb-4 bg-light rounded-3-->
+
+
+  
+  
+  <div class="bg-light p-3 rounded-3 ">
+    <h1>Most Sold Products</h1>
+    <hr>
+    <div class="row">
+      <% products.forEach(product => {%>
+       
+
+        <div class="  col-lg-3 col-xs-4 col-sm-4">
+          <div class="card" >
+            <img src=" <%= product.prodImage %>" class="card-img-top" alt="...">
+            <div class="card-body">
+
+              <p class="card-text"> <a id="prodName" href="/meatro/<%= product._id %>"> <%=product.prodName%></a> </p>
+              <p> <%= product.prodDesc %></p><!--work on this-->
+              <!-- add to cart -->
+              <form action="/meatro/<%= product._id %>/cart" method="POST">
+                <button type="submit" href=""class="btn btn-danger">Add to Cart</button>
+              </form>
+             
+
+            </div>
+         
+          </div> 
+             <!-- end of first card -->
+        </div>
+            <!-- end of column  -->
+
+        <% }) %>  <!--end of foreach loop-->
+      
+      
+      
+    </div>
+    <!-- end of row -->
+  </div>
+  <!-- end of bg light -->
+</div>
+
+<!-- end of container -->
+    
+ 
+
+
+<%- include ("partials/footer.ejs")%>
