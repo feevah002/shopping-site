@@ -1,1 +1,3 @@
 /node_modules
+/views/upload.ejs
+/public/uploads
