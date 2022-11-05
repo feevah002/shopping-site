@@ -9,6 +9,7 @@
   
             <p class="card-text"> Product Name </p>
             <p> <%= product.prodDesc %></p><!--work on this-->
+            <p> <%= product.prodPrice %></p><!--work on this-->
           </div>
         </div> 
            <!-- end of first card -->
@@ -29,7 +30,12 @@
               <button class="btn btn-danger show-cart">call order</button>
             </div>
             <div class="  col-lg-8 col-xs-9 col-sm-9">
-              <button class="show-cart btn btn-danger">Add to Cart</button>
+            
+
+              <form action="/meatro/<%= product._id %>/cart" method="POST">
+                <button class="show-cart btn btn-danger" type="submit" href=""class="btn btn-danger">Add to Cart</button>
+              </form>
+
             </div>
           </div>
         </div>

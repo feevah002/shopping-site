@@ -12,16 +12,19 @@ const UserSchema = new mongoose.Schema({
     name:String,
     price:String
   }],
-  cart:[
-    {id:{
-   type: mongoose.Schema.Types.ObjectId,
+  cart:[{
+   userid:{
+    type: mongoose.Schema.Types.ObjectId,
+   },
+   mainItemId:{
+    type: mongoose.Schema.Types.ObjectId,
    },
    prodImage: String,
    prodName: String,
    prodDesc:String,
    prodPrice: Number,
 
-}],
+  }],
   amountToBePaid: String,
   amountPaid: String,
 });

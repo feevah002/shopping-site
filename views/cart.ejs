@@ -8,7 +8,7 @@
             <img src=" <%= cartItem.prodImage %>" class="card-img-top" alt="...">
             <div class="card-body">
     
-              <p class="card-text"> Product Name 
+              <p class="card-text"> <a href="/meatro/<%= cartItem.mainItemId %>"> Product Name </a>
                 <form action= "/meatro/<%= user._id%>/cart/<%= cartItem._id %>" method="GET">
                   <button class="btn btn-danger"> delete</button>
                 </form>
@@ -23,13 +23,12 @@
         </div>
         <!-- end of column  -->
       <%} );%>
-     <p><%= total%></p> 
+     <p>total: <%= total%></p> 
       
     </div>
       
       <div class="container">
         <div class = "row p-3 pb-3">
-          <div
           <div id = "checOutCont"class=" col-lg-8 col-xs-12 col-sm-12">
             <button id="CheckOut"class=" btn btn-danger">CheckOut</button>
           </div>

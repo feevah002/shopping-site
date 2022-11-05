@@ -109,7 +109,8 @@ app.post("/meatro/:id/cart", middlewareObj.isLoggedIn, function(req,res, err){
   
     } else {
       let cart = {
-        id : req.user._id,
+        mainItemId : found._id,
+        userid : req.user._id,
         prodName : found.prodName,
         prodImage: found.prodImage,
         prodDesc : found.prodDesc,
@@ -151,6 +152,7 @@ app.get("/meatro/:id", function(req,res, err){
     if(err){
       console.log(err);
     } else {
+      console.log(product)
         res.render("show", {product : product});
       }
     });
