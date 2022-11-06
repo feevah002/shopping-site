@@ -60,6 +60,19 @@ app.use("/meatro", cartRoutes)
 app.use("/meatro", meatroRoutes)
 app.use( indexRoutes)
 
+// Product.create({
+//   prodName : "XTRA LARGE",
+//   prodDesc : "i dont wanna act likeeee",
+//   prodImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYUZU-KmW9AjtmpKh7m8nvw7QyDLwtrCYrt2-pkBGh&s",
+//   prodPrice: 3500,
+// }, function (err,  created) {
+//   if(err){console.log(err)}
+//   else{console.log(created)}
+//   })   
+// User.deleteMany({}, (err) => {
+//   if (err){console.log(err)}
+//   else{console.log("all prod deleted")}
+// });
 
 const PORT = 3000
 app.listen(PORT, (err)=>{

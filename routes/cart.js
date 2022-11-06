@@ -3,6 +3,7 @@ const Product = require("../models/product.js");
 const User = require("../models/user.js");
 const bodyParser = require("body-parser");
 const Comment = require("../models/comment.js"),
+      Cart = require("../models/cart.js"),
       express = require("express"),
       flash = require("connect-flash"),
       middlewareObj = require("../middleware"),
@@ -11,56 +12,65 @@ const Comment = require("../models/comment.js"),
 //view cart
 router.get("/:uid/cart", middlewareObj.isLoggedIn, function(req, res){
   
-  User.findById(req.user._id, function(err, user){
+  Cart.find({}, function(err, cart){
      if(err){
       console.log(err)
      }
      else{
       let total = 0;
-      res.render("cart/cart",{user: user, total: total})
+      res.render("cart/cart",{cart: cart, total: total})
      }
   })
 })
 
 // add to cart
-router.post("/:id/cart", middlewareObj.isLoggedIn, function(req,res, err){
+router.post("/:uid/cart/:pid/", middlewareObj.isLoggedIn, function(req,res, err){
    
-  Product.findById(req.params.id, function(err, found){
+  Product.findById(req.params.pid, function(err, found){
     if(err){console.log(err)
   
     } else {
-      let cart = {
-        mainItemId : found._id,
-        userid : req.user._id,
-        prodName : found.prodName,
+      
+      User.findById(req.user._id,  function(err, foundUser){
+      let prodQuantity = 1;
+      let createCart = {
+        owner: {
+          id: req.user._id,
+          username: foundUser.username,
+        },
+        mainItemId:  found._id,
         prodImage: found.prodImage,
+        prodName: found.prodName,
         prodDesc : found.prodDesc,
         prodPrice : found.prodPrice,
-      }
-      User.findById(req.user._id, function(err, foundUser){
-        if(err){console.log(err); 
-          res.redirect("/");
-        } else{
-          console.log(cart)
-          foundUser.cart.push(cart);
-          foundUser.save();
-          res.redirect("");
+        prodQuantity: prodQuantity,
         }
-      })
-      
+      if(err){console.log(err); 
+          res.redirect("/");
+      } else{
+        Cart.create(createCart, function(err, created){
+          if(err){
+            console.log(err)
+          } else{
+            console.log(created)
+            res.redirect("/")
+          }
+        });    
+        }
+      });
     }
-  })    
+  });
 });
 // delete an item from cart delete
-router.get("/:uid/cart/:cartItemId",async function(req, res){
-await User.updateOne({_id : req.user._id}, {
-  $pull:{
-    cart:{
-      _id: req.params.cartItemId
+router.delete("/:uid/cart/:mainItemId", function(req, res){
+  Cart.deleteMany({mainItemId: req.params.mainItemId}, (err)=>{
+    if(err){
+      console.log(err)
+    } else {
+      res.redirect("/meatro/"+req.user._id+"/cart");
     }
-  }
-})
-res.redirect("/"+req.user._id+"/cart");
+  })
+
 });
 
 module.exports = router;

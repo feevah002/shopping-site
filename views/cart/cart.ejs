@@ -2,26 +2,35 @@
 <div id = "showpage">
   <div class="container">
     <div class=" row p-4 pb-2 ">
-      <% user.cart.forEach(cartItem=>{%>
-        <div class="  col-lg-8 col-xs-12 col-sm-12">
-          <div class="card" >
-            <img src=" <%= cartItem.prodImage %>" class="card-img-top" alt="...">
-            <div class="card-body">
-    
-              <p class="card-text"> <a href="/meatro/<%= cartItem.mainItemId %>"> Product Name </a>
-                <form action= "/meatro/<%= user._id%>/cart/<%= cartItem._id %>" method="GET">
-                  <button class="btn btn-danger"> delete</button>
-                </form>
-              </p>
-              <p> <%= cartItem.prodDesc %></p><!--work on this-->
-              <p> <%= cartItem.prodPrice %></p><!--work on this-->
-              <%total += cartItem.prodPrice%>
-              
-            </div>
-          </div> 
-             <!-- end of first card -->
-        </div>
-        <!-- end of column  -->
+      <% cart.forEach(cartItem=>{%>
+        
+          <div class="  col-lg-8 col-xs-12 col-sm-12">
+            <div class="card" >
+              <img src=" <%= cartItem.prodImage %>" class="card-img-top" alt="...">
+              <div class="card-body">
+      
+                <p class="card-text"> <a href="/meatro/<%= cartItem.mainItemId %>"> Product Name </a>
+  
+  
+                  <form action ="/meatro/<%= currentUser._id%>/cart/<%= cartItem.mainItemId %>?_method=delete" method="post">
+  
+                    <button class="btn btn-danger"> delete</button>
+  
+                  </form>
+                </p>
+                <p> <%= cartItem.prodDesc %></p><!--work on this-->
+                <p> <%= cartItem.prodPrice %></p><!--work on this-->
+                <p> <%= cartItem.prodQuantity %></p><!--work on this-->
+                <p> <%= cartItem.mainItemId%></p><!--work on this-->
+                <p> <%= cartItem.allay%></p><!--work on this-->
+                <%total += cartItem.prodPrice%>
+                
+              </div>
+            </div> 
+               <!-- end of first card -->
+          </div>
+          <!-- end of column  -->
+        
       <%} );%>
      <p>total: <%= total%></p> 
       

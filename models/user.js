@@ -16,14 +16,7 @@ const UserSchema = new mongoose.Schema({
    userid:{
     type: mongoose.Schema.Types.ObjectId,
    },
-   mainItemId:{
-    type: mongoose.Schema.Types.ObjectId,
-   },
-   prodImage: String,
-   prodName: String,
-   prodDesc:String,
-   prodPrice: Number,
-
+  
   }],
   amountToBePaid: String,
   amountPaid: String,

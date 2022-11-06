@@ -29,7 +29,7 @@
               <p> <%= product.prodDesc %></p><!--work on this-->
               <p> <%= product.prodPrice %></p><!--work on this-->
               <!-- add to cart -->
-              <form action="/meatro/<%= product._id %>/cart" method="POST">
+              <form action="/meatro/<%=currentUser._id%>/cart/<%= product._id %>" method="POST">
                 <button type="submit" href=""class="btn btn-danger">Add to Cart</button>
               </form>
              
