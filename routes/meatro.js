@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Product = require("../models/product.js");
 const User = require("../models/user.js");
 const bodyParser = require("body-parser");
-const { route } = require("./cart.js");
 const Comment = require("../models/comment.js"),
       express = require("express"),
       passport = require("passport"),
@@ -13,7 +12,7 @@ const Comment = require("../models/comment.js"),
 
 // langing page 
 router.get("/", function(req, res, err){
-   
+
   Product.find({}, function(err, products){
     if(err){
       console.log(err)

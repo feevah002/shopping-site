@@ -1,12 +1,12 @@
 const mongoose = require("mongoose"),
       express = require("express"),
-      Product = require("../models/product.js"),
-      User = require("../models/user.js"),
-      Admin = require("../models/admin.js"),
+      Product = require("../../models/product.js"),
+      User = require("../../models/user.js"),
+      Admin = require("../../models/admin.js"),
       bodyParser = require("body-parser"),
       passport = require("passport"),
       flash = require("connect-flash"),
-      middlewareObj = require("../middleware"),
+      middlewareObj = require("../../middleware"),
       router = express.Router({margeParams: true});
 
 
@@ -48,9 +48,17 @@ router.post("/register", (req,res)=>{
 });
 //admin - home
 router.get("/home", (req,res)=>{
-  Product.find({}, function(err, allProducts){})
-  res.render("admin/users/home")
+  Product.find({}, (err, products)=>{
+    if(err){console.log(err)
+    }else{
+      res.render("admin/home",{products: products});
+    }
+  })
+ 
 })
+
+// add product
+router.get("/")
 
 
       

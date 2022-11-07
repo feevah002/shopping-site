@@ -17,7 +17,7 @@ const Admin = require("./models/admin.js"),
 const cartRoutes = require("./routes/cart");
 const indexRoutes = require("./routes/index");
 const meatroRoutes = require("./routes/meatro");
-const adminRoutes = require("./routes/admin");
+const adminRoutes = require("./routes/admin/index");
 // const multer  = require('multer')
 // const upload = multer({ dest: './public/uploads/' })
 
