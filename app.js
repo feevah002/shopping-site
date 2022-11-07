@@ -2,7 +2,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Product = require("./models/product.js");
 const User = require("./models/user.js");
-const Comment = require("./models/comment.js"),
+const Comment = require("./models/comment.js");
+const Admin = require("./models/admin.js"),
       express = require("express"),
       expressSession = require("express-session"),
       passport = require("passport"),
@@ -16,6 +17,7 @@ const Comment = require("./models/comment.js"),
 const cartRoutes = require("./routes/cart");
 const indexRoutes = require("./routes/index");
 const meatroRoutes = require("./routes/meatro");
+const adminRoutes = require("./routes/admin");
 // const multer  = require('multer')
 // const upload = multer({ dest: './public/uploads/' })
 
@@ -56,6 +58,7 @@ app.use(function(req, res, next){
 })
 
 
+app.use("/meatro/admin", adminRoutes)
 app.use("/meatro", cartRoutes)
 app.use("/meatro", meatroRoutes)
 app.use( indexRoutes)
@@ -73,6 +76,9 @@ app.use( indexRoutes)
 //   if (err){console.log(err)}
 //   else{console.log("all prod deleted")}
 // });
+
+    
+
 
 const PORT = 3000
 app.listen(PORT, (err)=>{

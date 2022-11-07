@@ -52,6 +52,8 @@ router.post("/:uid/cart/:pid/", middlewareObj.isLoggedIn, function(req,res, err)
           if(err){
             console.log(err)
           } else{
+        
+
             console.log(created)
             res.redirect("/")
           }

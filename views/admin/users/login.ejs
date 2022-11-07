@@ -1,0 +1,31 @@
+<%- include("../../partials/header.ejs")%>
+<div class="container">
+  <div class="row">
+    <div   class=" col-lg-6 col-sm-12">
+      <form id="loginform"  action ="/meatro/admin/login" method="POST">
+
+
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input name="username" type="text" class="form-control" id="username" >
+        </div>
+
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" id="password">
+          <div id="emailHelp" class="form-text"><a href="#">Forgot your password?</a></div>
+        </div>
+        <button type="submit" class="loginbutton btn btn-danger">login</button>
+      </form>
+    </div>
+    <!-- end of column -->
+    <div  class=" col-lg-6 col-sm-12"> probably an random advert</div>
+      
+  </div>
+  
+</div>
+
+
+
+<%- include("../../partials/footer.ejs")%>

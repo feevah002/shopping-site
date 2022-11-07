@@ -13,13 +13,8 @@ const UserSchema = new mongoose.Schema({
     price:String
   }],
   cart:[{
-   userid:{
-    type: mongoose.Schema.Types.ObjectId,
-   },
-  
+   id:[{id:{type:mongoose.Schema.Types.ObjectId,}}]
   }],
-  amountToBePaid: String,
-  amountPaid: String,
 });
 UserSchema.plugin(passportLocalMongoose)
 

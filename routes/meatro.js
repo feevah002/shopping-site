@@ -13,7 +13,7 @@ const Comment = require("../models/comment.js"),
 
 // langing page 
 router.get("/", function(req, res, err){
- 
+   
   Product.find({}, function(err, products){
     if(err){
       console.log(err)
