@@ -58,7 +58,7 @@ app.use(function(req, res, next){
 })
 
 
-app.use("/meatro/admin", adminRoutes)
+app.use("/admin/meatro", adminRoutes)
 app.use("/meatro", cartRoutes)
 app.use("/meatro", meatroRoutes)
 app.use( indexRoutes)

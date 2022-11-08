@@ -1,0 +1,58 @@
+<%- include("../../partials/header.ejs")%>
+
+  <div class="container">
+    <div class="row">
+      <div class = "col-lg-6 col-sm-12">
+        <form  action ="/admin/meatro/" method="POST">
+          <!-- <div class="mb-3"> email
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+
+          <div class="mb-3">firstname
+            <label for="username" class="form-label">First Name</label>
+            <input name="product[newuser[firstname]"type="text" class="form-control" id="username" >
+          </div>
+          <div class="mb-3">middlename
+            <label for="username" class="form-label">Middle Name</label>
+            <input name="product[newuser[middlename]" type="text" class="form-control" id="username" >
+          </div>
+          <div class="mb-3">Lastname
+            <label for="username" class="form-label">Last Name</label>
+            <input  name="product[newuser[lastname]"type="text" class="form-control" id="username" >
+          </div>
+
+          <div class="mb-3">phone number
+            <label for="username" class="form-label">Phone Number</label>
+            <input  name="product[newuser[phonenumber]" type="text" class="form-control" id="username" >
+            <div id="emailHelp" class="form-text">Contact for delivery</div>
+          </div> -->
+          <div class="mb-3"><!--prodName-->
+            <label for="prodName" class="form-label">prodName</label>
+            <input name="product[prodName]" type="text" class="form-control" id="prodName" >
+          </div>
+
+          <div class="mb-3"><!--prodImage -->
+            <label for="prodImage" class="form-label">prodImage</label>
+            <input name="product[prodImage]" type="text" class="form-control" id="prodImage" >             
+          </div> 
+
+          <div class="mb-3"><!--prodDesc -->
+            <label for="prodDesc" class="form-label">prodDesc</label>
+            <input name="product[prodDesc]" type="text" class="form-control" id="prodDesc" >             
+          </div> 
+
+          <div class="mb-3"><!--prodPrice -->
+            <label for="prodPrice" class="form-label">prodPrice</label>
+            <textarea name="product[prodPrice]" class="form-control" id="prodPrice"> </textarea>            
+          </div> 
+
+          <button type="submit" class="loginbutton btn btn-danger">Add Porduct</button>
+        </form>
+        <!-- end of form -->
+      </div>
+    </div>
+  </div>
+
+<%- include("../../partials/footer.ejs")%>

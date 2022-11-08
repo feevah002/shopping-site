@@ -25,22 +25,10 @@
             <img src=" <%= product.prodImage %>" class="card-img-top" alt="...">
             <div class="card-body">
 
-              <p class="card-text"> <a id="prodName" href="/meatro/<%= product._id %>"> <%=product.prodName%></a> </p>
+              <p class="card-text"> <a id="prodName" href="/admin/meatro/<%= product._id %>"> <%=product.prodName%></a> </p>
               <p> <%= product.prodDesc %></p><!--work on this-->
               <p> <%= product.prodPrice %></p><!--work on this-->
               <!-- add to cart -->
-              <%if(currentUser){%>
-                <form action="/meatro/<%=currentUser._id%>/cart/<%= product._id %>" method="POST">
-                  <button type="submit" href=""class="btn btn-danger">Add to Cart</button>
-                </form>
-              <%}else{%>
-                <form action="/login" method="POST">
-                  <button type="submit" href=""class="btn btn-danger">Add to Cart</button>
-                </form>
-              <%}%>
-              
-             
-
             </div>
          
           </div> 
