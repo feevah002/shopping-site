@@ -12,11 +12,13 @@
 
 
   
-  
+  <a class="btn btn-danger"href="/admin/meatro/new"> add a new product</a>
+  <hr>
   <div class="bg-light p-3 rounded-3 ">
     <h1>Most Sold Products</h1>
     <hr>
     <div class="row">
+      
       <% products.forEach(product => {%>
        
 
@@ -28,7 +30,12 @@
               <p class="card-text"> <a id="prodName" href="/admin/meatro/<%= product._id %>"> <%=product.prodName%></a> </p>
               <p> <%= product.prodDesc %></p><!--work on this-->
               <p> <%= product.prodPrice %></p><!--work on this-->
-              <!-- add to cart -->
+              <div>
+                <form action="/admin/meatro/<%=product._id%>?_method=DELETE" method="POST">
+                  <button class="btn btn-danger">delete</button>
+                </form>
+                <a class="btn btn-danger" href="/admin/meatro/<%=product._id%>/edit">edit</a>
+              </div>
             </div>
          
           </div> 

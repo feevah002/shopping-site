@@ -18,6 +18,7 @@ const cartRoutes = require("./routes/cart");
 const indexRoutes = require("./routes/index");
 const meatroRoutes = require("./routes/meatro");
 const adminRoutes = require("./routes/admin/index");
+const adminMeatroRoutes = require("./routes/admin/meatro");
 // const multer  = require('multer')
 // const upload = multer({ dest: './public/uploads/' })
 
@@ -59,6 +60,7 @@ app.use(function(req, res, next){
 
 
 app.use("/admin/meatro", adminRoutes)
+app.use("/admin/meatro", adminMeatroRoutes)
 app.use("/meatro", cartRoutes)
 app.use("/meatro", meatroRoutes)
 app.use( indexRoutes)
