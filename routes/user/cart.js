@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const Product = require("../models/product.js");
-const User = require("../models/user.js");
+const Product = require("../../models/product.js");
+const User = require("../../models/user.js");
 const bodyParser = require("body-parser");
-const Comment = require("../models/comment.js"),
-      Cart = require("../models/cart.js"),
+const Comment = require("../../models/comment.js"),
+      Cart = require("../../models/cart.js"),
       express = require("express"),
       flash = require("connect-flash"),
-      middlewareObj = require("../middleware"),
+      middlewareObj = require("../../middleware"),
       router = express.Router({margeParams: true});
 
 //view cart
@@ -18,7 +18,7 @@ router.get("/:uid/cart", middlewareObj.isLoggedIn, function(req, res){
      }
      else{
       let total = 0;
-      res.render("cart/cart",{cart: cart, total: total})
+      res.render("user/cart/cart",{cart: cart, total: total})
      }
   })
 })

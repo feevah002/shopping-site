@@ -14,9 +14,11 @@ const Admin = require("./models/admin.js"),
       middlewareObj = require("./middleware"),
       app = express();
       //requiring routes
-const cartRoutes = require("./routes/cart");
-const indexRoutes = require("./routes/index");
-const meatroRoutes = require("./routes/meatro");
+const cartRoutes = require("./routes/user/cart");
+const indexRoutes = require("./routes/user/index");
+const meatroRoutes = require("./routes/user/meatro");
+
+//admin routes
 const adminRoutes = require("./routes/admin/index");
 const adminMeatroRoutes = require("./routes/admin/meatro");
 // const multer  = require('multer')

@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const Product = require("../models/product.js");
-const User = require("../models/user.js");
+const Product = require("../../models/product.js");
+const User = require("../../models/user.js");
 const bodyParser = require("body-parser");
-const Comment = require("../models/comment.js"),
+const Comment = require("../../models/comment.js"),
       express = require("express"),
       passport = require("passport"),
       flash = require("connect-flash"),
-      middlewareObj = require("../middleware"),
+      middlewareObj = require("../../middleware"),
       router = express.Router({margeParams: true});
       
 
@@ -17,7 +17,7 @@ router.get("/", function(req, res, err){
     if(err){
       console.log(err)
     } else {
-      res.render("meatro/index", {products: products})
+      res.render("user/meatro/index", {products: products})
     }
   })
   
@@ -35,7 +35,7 @@ router.get("/:id", function(req,res, err){
       console.log(err);
     } else {
       console.log(product)
-        res.render("meatro/show", {product : product});
+        res.render("user/meatro/show", {product : product});
       }
     });
 });

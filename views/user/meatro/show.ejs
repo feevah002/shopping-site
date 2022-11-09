@@ -1,4 +1,4 @@
-<%- include ("../partials/header.ejs")%>
+<%- include ("../../partials/header.ejs")%>
 <div id = "showpage">
   <div class="container">
     <div class=" row p-4 pb-2 ">
@@ -31,10 +31,14 @@
             </div>
             <div class="  col-lg-8 col-xs-9 col-sm-9">
             
-
-              <form action="/meatro/<%= currentUser._id %>/cart/<%= product._id %>" method="POST">
-                <button class="show-cart btn btn-danger" type="submit" href=""class="btn btn-danger">Add to Cart</button>
-              </form>
+              <%if(currentUser){%>
+                <form action="/meatro/<%= currentUser._id %>/cart/<%= product._id %>" method="POST">
+                  <button class="show-cart btn btn-danger" type="submit" href=""class="btn btn-danger">Add to Cart</button>
+                </form>
+              <%}else{%>
+                  <a class="show-cart btn btn-danger" href="/login"class="btn btn-danger">Add to Cart</a>
+              <%}%>
+             
 
             </div>
           </div>
@@ -45,4 +49,4 @@
 </div>
 
  
-    <%- include ("../partials/footer.ejs")%>
+    <%- include ("../../partials/footer.ejs")%>

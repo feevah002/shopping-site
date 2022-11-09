@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
       express = require("express"),
-      Product = require("../models/product.js"),
-      User = require("../models/user.js"),
+      Product = require("../../models/product.js"),
+      User = require("../../models/user.js"),
       bodyParser = require("body-parser"),
       passport = require("passport"),
       flash = require("connect-flash"),
@@ -15,7 +15,7 @@ router.get("/", function(req, res, err){
 
 // create account
 router.get("/register", function(req,res, err){
-  res.render("users/register");
+  res.render("user/users/register");
 });
 
 // create acconut logic
@@ -38,7 +38,7 @@ let newuser = new User({username: req.body.username})
 
 //login page
 router.get("/login", function(req,res, err){
-res.render("users/login");
+res.render("user/users/login");
 });
 
 //login logic
