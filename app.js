@@ -1,9 +1,6 @@
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const Product = require("./models/product.js");
-const User = require("./models/user.js");
-const Comment = require("./models/comment.js");
-const Admin = require("./models/admin.js"),
+const User = require("./models/user.js"),
       express = require("express"),
       expressSession = require("express-session"),
       passport = require("passport"),
@@ -11,16 +8,15 @@ const Admin = require("./models/admin.js"),
       passportLocalMongoose = require("passport-local-mongoose"),
       flash = require("connect-flash"),
       methodOverride = require("method-override"),
-      middlewareObj = require("./middleware"),
       app = express();
       //requiring routes
-const cartRoutes = require("./routes/user/cart");
-const indexRoutes = require("./routes/user/index");
-const meatroRoutes = require("./routes/user/meatro");
+// const cartRoutes = require("./routes/user/cart");
+// const indexRoutes = require("./routes/user/index");
+// const meatroRoutes = require("./routes/user/meatro");
 
 //admin routes
-const adminRoutes = require("./routes/admin/index");
-const adminMeatroRoutes = require("./routes/admin/meatro");
+// const adminRoutes = require("./routes/admin/index");
+// const adminMeatroRoutes = require("./routes/admin/meatro");
 // const multer  = require('multer')
 // const upload = multer({ dest: './public/uploads/' })
 
@@ -36,6 +32,7 @@ async function main(){
 //extra stuffs
 //attatching body parser
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 //attatching app.js to the views directory
 app.set("view engine","ejs")
 
@@ -61,11 +58,15 @@ app.use(function(req, res, next){
 })
 
 
-app.use("/admin/meatro", adminRoutes)
-app.use("/admin/meatro", adminMeatroRoutes)
-app.use("/meatro", cartRoutes)
-app.use("/meatro", meatroRoutes)
-app.use( indexRoutes)
+// app.use("/admin/meatro", adminRoutes)
+// app.use("/admin/meatro", adminMeatroRoutes)
+// app.use("/meatro", cartRoutes)
+// app.use("/meatro", meatroRoutes)
+// app.use( indexRoutes)
+const productRoutes = require("./app/product/routes")
+const cartRoutes = require("./app/cart/routes")
+app.use( productRoutes)
+app.use(cartRoutes)
 
 // Product.create({
 //   prodName : "XTRA LARGE",

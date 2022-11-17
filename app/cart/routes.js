@@ -1,0 +1,15 @@
+const router = require("express").Router();
+const cartController = require("./controller");
+
+// user/customer cart roytes
+
+
+router.get("/meatro/:uid/cart", cartController.getCart)
+
+router.post("/meatro/:uid/cart", cartController.create)
+
+router.get("/meatro/:uid/cart/:pid", cartController.findById)
+
+router.delete("/meatro/:uid/cart/:id", cartController.findByIdAndRemove)
+
+module.exports = router

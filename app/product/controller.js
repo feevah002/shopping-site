@@ -6,7 +6,7 @@ exports.getProducts = async (req, res)=>{
    let allProducts = await productRepository.products() 
    res.status(200).json({
     status: true,
-    data: product
+    data: allProducts
    });
   } catch(err) {
       res.status(500).json({
@@ -20,8 +20,9 @@ exports.newProdForm = (req,res)=>{
   res.render("new")
 }
 // adding a nerw product
-exports.addNewProduct = async (req,res)=>{
+exports.create = async (req,res)=>{
   try{
+    console.log(req.body.name)
     let newProd = {
       prodName : req.body.name,
       prodImage : req.body.image,
@@ -90,17 +91,18 @@ exports.findByIdAndUpdate = async (req, res)=>{
 }
 
 //deleting a product
-exports.findByIdAndRemove = async (req, res)=>{
+exports.findByIdAndRename = async (req, res)=>{
   try{
+    let id = req.params.id;
     let deleted = await productRepository.deleteProduct(id)
     res.status(200).json({
       status:true,
+      data: deleted
     });
-  }
-  catch(err){
+  } catch(err){
     res.status(500).json({
       error:err,
-      status:true,
+      status:false,
     });
   }
 }
