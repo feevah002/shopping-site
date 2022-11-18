@@ -1,9 +1,9 @@
-<%- include("../../partials/header.ejs")%>
+<%- include("../partials/header.ejs")%>
 
   <div class="container">
     <div class="row">
       <div class = "col-lg-6 col-sm-12">
-        <form  action ="/admin/meatro/" method="POST">
+        <form  action ="/meatro" method="POST">
           <!-- <div class="mb-3"> email
               <label for="email" class="form-label">Email address</label>
               <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
@@ -35,7 +35,7 @@
 
           <div class="mb-3"><!--prodImage -->
             <label for="prodImage" class="form-label">prodImage</label>
-            <input name="product[prodImage]" type="text" class="form-control" id="prodImage" >             
+            <input name="product[prodImage]" type="file" class="form-control" id="prodImage" >             
           </div> 
 
           <div class="mb-3"><!--prodDesc -->
@@ -55,4 +55,4 @@
     </div>
   </div>
 
-<%- include("../../partials/footer.ejs")%>
+<%- include("../partials/footer.ejs")%>

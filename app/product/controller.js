@@ -1,13 +1,10 @@
 const productRepository = require("./repository")
 
-// getting all products
+// getting all products - user
 exports.getProducts = async (req, res)=>{
   try{
    let allProducts = await productRepository.products() 
-   res.status(200).json({
-    status: true,
-    data: allProducts
-   });
+   res.render("product/index",{products: allProducts})
   } catch(err) {
       res.status(500).json({
         error:err,
@@ -15,43 +12,33 @@ exports.getProducts = async (req, res)=>{
       });
   }
 }
+
 //new form for product 
 exports.newProdForm = (req,res)=>{
-  res.render("new")
+  res.render("product/new")
 }
 // adding a nerw product
 exports.create = async (req,res)=>{
   try{
-    let newProd = {
-      prodName : req.body.name,
-      prodImage : req.body.image,
-      prodDesc : req.body.desc,
-      prodPrice : req.body.price,
-     }
+    let newProd = req.body.product;
     let addedProduct = await productRepository.newProduct(newProd)
-     res.status(200).json({
-      status:true,
-      data:addedProduct
-     })
+     res.redirect("/admin/meatro/"+addedProduct._id)
     }
     catch(err){
+  
       res.status(500).json({
         error:err,
         status:false,
       })
     }
 }
-// viewing a particular product 
+// viewing a particular product - user
 exports.findById = async (req, res)=>{
   try{
-    let id = req.params.id;
-    let foundProduct = await productRepository.productById(id);
-    res.status(200).json({
-      status:true,
-      data:foundProduct,
-    });
-  }
-  catch(err){
+    let pid = req.params.pid;
+    let foundProduct = await productRepository.productById(pid);
+    res.render('product/show',{product: foundProduct})
+  } catch(err) {
     res.status(500).json({
       error:err,
       status:true,
@@ -60,26 +47,30 @@ exports.findById = async (req, res)=>{
   
 }
 
+
 // edit form
-exports.editProdForm = (req,res)=>{
-  res.render("edit");
+exports.editProdForm = async (req,res)=>{
+  try{
+    let pid = req.params.pid;
+    let foundProduct = await productRepository.productById(pid);
+    res.render("product/edit",{product: foundProduct});
+
+  } catch(err){
+    res.status(500).json({
+      error:err,
+      status:true,
+    });
+  }
 }
 
 //editint a product
 exports.findByIdAndUpdate = async (req, res)=>{
   try{
-    let id = req.params.id;
-    let newData = {
-      prodName : req.body.name,
-      prodImage : req.body.image,
-      prodDesc : req.body.desc,
-      prodPrice : req.body.price,
-     }
-    let editedProduct = await productRepository.editProduct(id, newData);
-    res.status(200).json({
-      status:true,
-      data:editedProduct,
-    });
+    let pid = req.params.pid;
+    let newData = req.body.product
+
+    let editedProduct = await productRepository.editProduct(pid, newData);   
+    res.redirect("/seller/meatro/" + pid)
   }
   catch(err){
     res.status(500).json({
@@ -92,12 +83,9 @@ exports.findByIdAndUpdate = async (req, res)=>{
 //deleting a product
 exports.findByIdAndRemove = async (req, res)=>{
   try{
-    let id = req.params.id;
-    let deleted = await productRepository.deleteProduct(id)
-    res.status(200).json({
-      status:true,
-      data: deleted
-    });
+    let pid = req.params.pid;
+    let deleted = await productRepository.deleteProduct(pid)
+    res.redirect("/seller")
   } catch(err){
     res.status(500).json({
       error:err,

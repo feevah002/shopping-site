@@ -1,27 +1,31 @@
-const router = require("express").Router();
+const router = require("express").Router({mergeParams: true});
 const userController = require("./controller");
 
 
 router.get("/user", userController.getusers)
 
 // create and register new user 
-router.get("/user/new", userController.newUserForm)
-router.post("/register", userController.create)
+router.get("/register", userController.newUserForm)
+router.post("/auth/register", userController.create)
 
+//show page
+router.get("/user/:uid", userController.findById)
 
 //login user
-router.post("/login", userController.loginMiddleware, userController.login)
+router.get("/login", userController.login)
+router.post("/auth/login", userController.loginMiddleware)
+
 
 //finding a user
-router.get("/user/:id", userController.findById)
+router.get("/user/:uid", userController.findById)
 
 
 // edit user details 
-router.get("/meatro/:id/edit", userController.editUserForm)
-router.put("/user/:id", userController.findByIdAndUpdate)
+router.get("/user/:uid/edit", userController.editUserForm)
+router.put("/user/:uid", userController.findByIdAndUpdate)
 
 
 
-router.delete("/user/:id", userController.findByIdAndRemove)
+router.delete("/user/:uid", userController.findByIdAndRemove)
 
 module.exports= router

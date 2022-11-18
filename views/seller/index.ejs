@@ -1,4 +1,4 @@
-<%- include ("../../partials/header.ejs")%>
+<%- include ("../partials/header.ejs")%>
 
 <div class="container">
   <div class="p-3 mb-4 bg-light rounded-3">
@@ -10,13 +10,13 @@
     </div>  
   </div> <!--  "p-5 mb-4 bg-light rounded-3-->
 
-
-  
-  
+  <a class="btn btn-danger"href="/admin/meatro/new"> add a new product</a>
+  <hr>
   <div class="bg-light p-3 rounded-3 ">
     <h1>Most Sold Products</h1>
     <hr>
     <div class="row">
+      
       <% products.forEach(product => {%>
        
 
@@ -25,22 +25,15 @@
             <img src=" <%= product.prodImage %>" class="card-img-top" alt="...">
             <div class="card-body">
 
-              <p class="card-text"> <a id="prodName" href="/meatro/<%= product._id %>"> <%=product.prodName%></a> </p>
+              <p class="card-text"> <a id="prodName" href="/admin/meatro/<%= product._id %>"> <%=product.prodName%></a> </p>
               <p> <%= product.prodDesc %></p><!--work on this-->
               <p> <%= product.prodPrice %></p><!--work on this-->
-              <!-- add to cart -->
-              <%if(currentUser){%>
-                <form action="/meatro/<%=currentUser._id%>/cart/<%= product._id %>" method="POST">
-                  <button type="submit" href=""class="btn btn-danger">Add to Cart</button>
+              <div>
+                <form action="/seller/meatro/<%=product._id%>?_method=DELETE" method="POST">
+                  <button class="btn btn-danger">delete</button>
                 </form>
-              <%}else{%>
-                <form action="/login" method="POST">
-                  <button type="submit" href=""class="btn btn-danger">Add to Cart</button>
-                </form>
-              <%}%>
-              
-             
-
+                <a class="btn btn-danger" href="/seller/meatro/<%=product._id%>/edit">edit</a>
+              </div>
             </div>
          
           </div> 
@@ -49,9 +42,6 @@
             <!-- end of column  -->
 
         <% }) %>  <!--end of foreach loop-->
-      
-      
-      
     </div>
     <!-- end of row -->
   </div>
@@ -63,4 +53,4 @@
  
 
 
-<%- include ("../../partials/footer.ejs")%>
+<%- include ("../partials/footer.ejs")%>

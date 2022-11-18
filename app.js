@@ -49,10 +49,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash())
 
-passport.use(new LocalStrategy(User.authenticate()))
-passport.use(new LocalStrategy(User.authenticate()))
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
+// passport.use(new LocalStrategy(User.authenticate()))
+// passport.use(new LocalStrategy(User.authenticate()))
+// passport.serializeUser(User.serializeUser())
+// passport.deserializeUser(User.deserializeUser())
 
 passport.use(new LocalStrategy(Seller.authenticate()))
 passport.use(new LocalStrategy(Seller.authenticate()))

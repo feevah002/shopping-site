@@ -26,8 +26,15 @@
 
               <a class="nav-link" href="/login" aria-current="page">Cart</a>
 
+
+
               <% } else{ %>
-                <a class="nav-link" href="/meatro/<%=currentUser._id%>/cart" aria-current="page">Cart</a>
+                <a class="nav-link" href="/meatro/<%=currentUser._id%>/cart" aria-current="page">Cart </a>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="/user/<%=currentUser._id%>" aria-current="page">Profile</a>
+                </li>  
+                
             <% } %>
           
           </li>  
@@ -35,6 +42,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/logout" aria-current="page">logout</a>
           </li>  
+          
   
         
             <li class="nav-item">

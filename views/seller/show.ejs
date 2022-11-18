@@ -1,4 +1,4 @@
-<%- include ("../../partials/header.ejs")%>
+<%- include ("../partials/header.ejs")%>
   <div id = "showpage">
     <div class="container">
       <div class=" row p-4 pb-2 ">
@@ -18,8 +18,6 @@
           <div class="bg-white">
             here are some random stuffs that you make like
           </div>
-          
-          
         </div>
       </div>
         <!-- end of column  -->
@@ -30,12 +28,6 @@
                 <button class="btn btn-danger show-cart">call order</button>
               </div>
               <div class="  col-lg-8 col-xs-9 col-sm-9">
-              
-
-                <form action="/meatro/<%= currentUser._id %>/cart/<%= product._id %>" method="POST">
-                  <button class="show-cart btn btn-danger" type="submit" href=""class="btn btn-danger">Add to Cart</button>
-                </form>
-
               </div>
             </div>
           </div>
@@ -45,4 +37,4 @@
   </div>
 
  
-<%- include ("../../partials/footer.ejs")%>
+<%- include ("../partials/footer.ejs")%>

@@ -21,7 +21,6 @@ exports.editProduct = async (id, newData)=>{
 }
 // to delete and item
 exports.deleteProduct = async (id)=>{
-  console.log(id)
   let deleteProduct = Product.findByIdAndRemove(id);
   return deleteProduct
 }

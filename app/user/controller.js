@@ -1,7 +1,7 @@
 const passport = require("passport");
 const userRepository = require("./repository")
 
-// getting all users
+// getting all users --- advanced
 exports.getusers = async (req, res)=>{
   try{
    let allusers = await userRepository.users() 
@@ -18,7 +18,7 @@ exports.getusers = async (req, res)=>{
 }
 //new form for user 
 exports.newUserForm = async (req,res)=>{
-  await res.render("new")
+  await res.render("user/register")
 }
 // adding a nerw user
 exports.create = async (req,res)=>{
@@ -26,11 +26,7 @@ exports.create = async (req,res)=>{
     let newUser = {username: req.body.username}
     let password = req.body.password
     let addeduser = await userRepository.newuser(newUser, password)
-    console.log(addeduser)
-     res.status(200).json({
-      status:true,
-      data:addeduser
-     });
+     res.redirect("/meatro")
     }
     catch(err){
       res.status(500).json({
@@ -42,33 +38,19 @@ exports.create = async (req,res)=>{
 //login user
 exports.loginMiddleware = passport.authenticate("local",{
   successRedirect:'/',
-  failureRedirect:"/failed"
+  failureRedirect:"/login"
 })
 
-exports.login = (req,res)=>{
-  try{
-    let user = req.body.username;
-    res.status(200).json({
-       status: true,
-       user: username,
-       message: "login sucessful"
-    })
-  } catch(err){
-    res.status(500).json({
-      status:false,
-      error:err
-    })
-  }
+exports.login = (req,res)=>{    
+    res.render("user/login")
 }
-// viewing a particular user 
+
+// user profile
 exports.findById = async (req, res)=>{
   try{
-    let id = req.params.id;
-    let founduser = await userRepository.userById(id);
-    res.status(200).json({
-      status:true,
-      data:founduser,
-    });
+    let uid = req.params.uid;
+    let founduser = await userRepository.userById(uid);
+    res.render("user/profile")
   }
   catch(err){
     res.status(500).json({
@@ -78,24 +60,28 @@ exports.findById = async (req, res)=>{
   }
 }
 
-// edit form
-exports.editUserForm = (req,res)=>{
-  res.render("edit");
+// edit form 
+exports.editUserForm = async (req,res)=>{
+  try{
+    let uid = req.params.uid;
+    let foundUser = await userRepository.userById(uid);
+    res.render("user/edit",{user:foundUser});
+  }
+  catch(err){
+    res.status(500).json({
+      error:err,
+      status:false,
+    });
+  }
 }
-
 //editing a user
 exports.findByIdAndUpdate = async (req, res)=>{
   try{
-    let id = req.params.id;
-    let newData = {
-      username : req.body.username,
-      password : req.body.password,
-     }
-    let editeduser = await userRepository.edituser(id, newData);
-    res.status(200).json({
-      status:true,
-      data:editeduser,
-    });
+    let uid = req.params.uid;
+    let newData = req.body.details
+    let editeduser = await userRepository.edituser(uid, newData);
+    // res.redirect("/user/"+editeduser._id);
+    res.redirect("/");
   }
   catch(err){
     res.status(500).json({
@@ -105,7 +91,7 @@ exports.findByIdAndUpdate = async (req, res)=>{
   }
 }
 
-//deleting a user
+//deleting a user --- advanced
 exports.findByIdAndRemove = async (req, res)=>{
   try{
     let id = req.params.id;
