@@ -8,9 +8,11 @@ exports.users = async ()=>{
 // to add a new user
 exports.newuser = async (user,password)=>{
   let newUser = new User(user)
-  let newuser = await User.register(newUser, password);
-  return newuser;
+  let RegUser = await User.register(newUser, password);
+  return RegUser;
 } 
+
+
 // to see a particular user 
 exports.userById = async (id)=>{
   let userById = await User.findById(id);

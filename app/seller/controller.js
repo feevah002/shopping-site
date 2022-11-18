@@ -1,13 +1,12 @@
-const passport = require("passport");
-const userRepository = require("./repository")
-
-// getting all users
-exports.getusers = async (req, res)=>{
+const sellerRepository = require("./repository")
+const ppassport = require("passport");
+// getting all Sellers
+exports.getSellers = async (req, res)=>{
   try{
-   let allusers = await userRepository.users() 
+   let allSellers = await sellerRepository.sellers() 
    res.status(200).json({
     status: true,
-    data: allusers
+    data: allSellers
    });
   } catch(err) {
       res.status(500).json({
@@ -16,20 +15,21 @@ exports.getusers = async (req, res)=>{
       });
   }
 }
-//new form for user 
-exports.newUserForm = async (req,res)=>{
-  await res.render("new")
+//new form for Seller 
+exports.newSellerForm = async (req,res)=>{
+  await res.render("register")
 }
-// adding a nerw user
+// adding a nerw Seller
 exports.create = async (req,res)=>{
   try{
-    let newUser = {username: req.body.username}
+
+    let newSeller = {username: req.body.username}
     let password = req.body.password
-    let addeduser = await userRepository.newuser(newUser, password)
-    console.log(addeduser)
+    let addedSeller = await sellerRepository.newSeller(newSeller, password)
+
      res.status(200).json({
       status:true,
-      data:addeduser
+      data:addedSeller
      });
     }
     catch(err){
@@ -39,10 +39,11 @@ exports.create = async (req,res)=>{
       });
     }
 }
-//login user
-exports.loginMiddleware = passport.authenticate("local",{
-  successRedirect:'/',
-  failureRedirect:"/failed"
+
+//login seller
+exports.loginMiddleware = ppassport.authenticate("local",{
+  successRedirect:"/",
+  faliureRedirect:"/login"
 })
 
 exports.login = (req,res)=>{
@@ -60,14 +61,14 @@ exports.login = (req,res)=>{
     })
   }
 }
-// viewing a particular user 
+// viewing a particular Seller 
 exports.findById = async (req, res)=>{
   try{
     let id = req.params.id;
-    let founduser = await userRepository.userById(id);
+    let foundSeller = await sellerRepository.sellerById(id);
     res.status(200).json({
       status:true,
-      data:founduser,
+      data:foundSeller,
     });
   }
   catch(err){
@@ -79,22 +80,22 @@ exports.findById = async (req, res)=>{
 }
 
 // edit form
-exports.editUserForm = (req,res)=>{
+exports.editSellerForm = (req,res)=>{
   res.render("edit");
 }
 
-//editing a user
+//editing a Seller
 exports.findByIdAndUpdate = async (req, res)=>{
   try{
     let id = req.params.id;
     let newData = {
-      username : req.body.username,
+      Sellername : req.body.Sellername,
       password : req.body.password,
      }
-    let editeduser = await userRepository.edituser(id, newData);
+    let editedSeller = await sellerRepository.editSeller(id, newData);
     res.status(200).json({
       status:true,
-      data:editeduser,
+      data:editedSeller,
     });
   }
   catch(err){
@@ -105,11 +106,11 @@ exports.findByIdAndUpdate = async (req, res)=>{
   }
 }
 
-//deleting a user
+//deleting a Seller
 exports.findByIdAndRemove = async (req, res)=>{
   try{
     let id = req.params.id;
-    let deleted = await userRepository.deleteuser(id)
+    let deleted = await sellerRepository.deleteSeller(id)
     res.status(200).json({
       status:true,
       data: deleted

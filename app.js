@@ -1,6 +1,7 @@
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const User = require("./app/user/model"),
+const User = require("./app/user/model");
+const Seller = require("./app/seller/model"),
       express = require("express"),
       expressSession = require("express-session"),
       passport = require("passport"),
@@ -49,8 +50,16 @@ app.use(passport.session());
 app.use(flash())
 
 passport.use(new LocalStrategy(User.authenticate()))
+passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
+
+passport.use(new LocalStrategy(Seller.authenticate()))
+passport.use(new LocalStrategy(Seller.authenticate()))
+passport.serializeUser(Seller.serializeUser())
+passport.deserializeUser(Seller.deserializeUser())
+
+
 
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
@@ -66,12 +75,22 @@ app.use(function(req, res, next){
 const productRoutes = require("./app/product/routes")
 const cartRoutes = require("./app/cart/routes");
 const userRoutes = require("./app/user/routes");
+const sellerRoutes = require("./app/seller/routes");
 
-app.use( productRoutes)
+app.use( "/",productRoutes)
 app.use(cartRoutes)
 app.use(userRoutes)
+app.use(sellerRoutes)
 
-
+app.get("/logout", (req,res,next)=>{
+  req.logout(err=>{
+    if(err){return next (err)
+    } else {
+      // req.flash()
+      res.redirect("/")
+    }
+  });
+});
 // Cart.create({
 //   prodName : "XTRA LARGE",
 //   prodDesc : "i dont wanna act likeeee",

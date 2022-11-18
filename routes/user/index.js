@@ -41,7 +41,7 @@
 // res.render("user/users/login");
 // });
 
-// //login logic
+//login logic
 // router.post("/login", passport.authenticate("local", {
 //   successRedirect:"/",
 //   failureRedirect: "/login"
