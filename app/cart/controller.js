@@ -1,15 +1,20 @@
 const cartRepository = require("./repository")
-
+const Cart = require("./model")
 // getting all Cart
 exports.getCart = async (req, res)=>{
   try{
-    console.log(allCart)
+    
    let allCart = await cartRepository.cart() 
+  
    res.status(200).json({
     status: true,
     data: allCart
    });
+
+
+
   } catch(err) {
+    
       res.status(500).json({
         status:false,
         error:err,
@@ -21,19 +26,20 @@ exports.getCart = async (req, res)=>{
 // adding a new item Cart
 exports.create = async (req,res)=>{
   try{
-    let createCart = {
+    let cartItem = {
       owner: {
         id: req.user._id,
-        username: foundUser.username,
+        username: req.user.username,
       },
-      mainItemId:  found._id,
-      prodImage: found.prodImage,
-      prodName: found.prodName,
-      prodDesc : found.prodDesc,
-      prodPrice : found.prodPrice,
-      prodQuantity: prodQuantity,
+      mainItemId:  product._id,
+      prodImage: product.prodImage,
+      prodName: product.prodName,
+      prodDesc : product.prodDesc,
+      prodPrice : product.prodPrice,
+      prodQuantity: 1,
       }
-    let addedCart = await cartRepository.newCart(newProd)
+    
+    let addedCart = await cartRepository.newCart(cartItem)
      res.status(200).json({
       status:true,
       data:addedCart
@@ -49,8 +55,8 @@ exports.create = async (req,res)=>{
 // viewing a particular Cart  item
 exports.findById = async (req, res)=>{
   try{
-    let id = req.params.id;
-    let foundCart = await cartRepository.CartById(id);
+    let pid = req.params.pid;
+    let foundCart = await cartRepository.CartById(pid);
     res.status(200).json({
       status:true,
       data:foundCart,
@@ -68,15 +74,17 @@ exports.findById = async (req, res)=>{
 //deleting a Cart item
 exports.findByIdAndRemove = async (req, res)=>{
   try{
-    let deleted = await cartRepository.deleteCart(id)
+    let pid = req.params.pid
+    let deleted = await cartRepository.deleteCart(pid)
     res.status(200).json({
       status:true,
+      data: deleted,
     });
   }
   catch(err){
     res.status(500).json({
       error:err,
-      status:true,
+      status:false,
     });
   }
 }

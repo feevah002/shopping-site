@@ -64,11 +64,14 @@ app.use(function(req, res, next){
 // app.use("/meatro", meatroRoutes)
 // app.use( indexRoutes)
 const productRoutes = require("./app/product/routes")
-const cartRoutes = require("./app/cart/routes")
-app.use( productRoutes)
-app.use(cartRoutes)
+const Cart = require("./app/cart/model")
+const cartRoutes = require("./app/cart/routes");
 
-// Product.create({
+app.use( productRoutes)
+app.use("/",cartRoutes)
+
+
+// Cart.create({
 //   prodName : "XTRA LARGE",
 //   prodDesc : "i dont wanna act likeeee",
 //   prodImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYUZU-KmW9AjtmpKh7m8nvw7QyDLwtrCYrt2-pkBGh&s",

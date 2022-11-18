@@ -10,6 +10,6 @@ router.post("/meatro/:uid/cart", cartController.create)
 
 router.get("/meatro/:uid/cart/:pid", cartController.findById)
 
-router.delete("/meatro/:uid/cart/:id", cartController.findByIdAndRemove)
+router.delete("/meatro/:uid/cart/:pid", cartController.findByIdAndRemove)
 
 module.exports = router
