@@ -19,6 +19,6 @@ router.put("/admin/meatro/:id", productController.findByIdAndUpdate)
 router.get("/admin/meatro/:id/edit", productController.editProdForm)
 
 
-router.delete("/admin/meatro/:id", productController.findByIdAndRename)
+router.delete("/admin/meatro/:id", productController.findByIdAndRemove)
 
 module.exports= router

@@ -1,19 +1,37 @@
-const mongoose = require("mongoose"),
-     passportLocalMongoose = require("passport-local-mongoose");
+const mongoose = require("mongoose")
+const passportLocalMongoose = require("passport-local-mongoose");
 const UserSchema = new mongoose.Schema({
-  username: String,
-  password: String,
-  firstName: String,
-  middleName: String,
-  lastName: String,
-  address: String,
-  number: String,
+  username: {
+    type:String
+  },
+  password: {
+    type:String
+  },
+  firstName: {
+    type:String
+  },
+  middleName: {
+    type:String
+  },
+  lastName: {
+    type:String
+  },
+  address: {
+    type:String
+  },
+  number: {
+    type:String
+  },
   productBought:[{
-    name:String,
-    price:String
+    name:{
+      type:String
+    },
+    price:{
+      type:String
+    },
   }],
   cart:[{
-   id:[{id:{type:mongoose.Schema.Types.ObjectId,}}]
+    id:{type:mongoose.Schema.Types.ObjectId,}
   }],
 });
 UserSchema.plugin(passportLocalMongoose)

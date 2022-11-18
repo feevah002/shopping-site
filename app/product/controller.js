@@ -22,7 +22,6 @@ exports.newProdForm = (req,res)=>{
 // adding a nerw product
 exports.create = async (req,res)=>{
   try{
-    console.log(req.body.name)
     let newProd = {
       prodName : req.body.name,
       prodImage : req.body.image,
@@ -91,7 +90,7 @@ exports.findByIdAndUpdate = async (req, res)=>{
 }
 
 //deleting a product
-exports.findByIdAndRename = async (req, res)=>{
+exports.findByIdAndRemove = async (req, res)=>{
   try{
     let id = req.params.id;
     let deleted = await productRepository.deleteProduct(id)

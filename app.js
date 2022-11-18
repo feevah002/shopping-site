@@ -1,6 +1,6 @@
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const User = require("./models/user.js"),
+const User = require("./app/user/model"),
       express = require("express"),
       expressSession = require("express-session"),
       passport = require("passport"),
@@ -21,7 +21,7 @@ const User = require("./models/user.js"),
 // const upload = multer({ dest: './public/uploads/' })
 
 
-
+// emitter.setMaxListeners(1)
 //connecting database
 main().catch( (err)=> {
   console.log(err)
@@ -64,11 +64,12 @@ app.use(function(req, res, next){
 // app.use("/meatro", meatroRoutes)
 // app.use( indexRoutes)
 const productRoutes = require("./app/product/routes")
-const Cart = require("./app/cart/model")
 const cartRoutes = require("./app/cart/routes");
+const userRoutes = require("./app/user/routes");
 
 app.use( productRoutes)
-app.use("/",cartRoutes)
+app.use(cartRoutes)
+app.use(userRoutes)
 
 
 // Cart.create({
