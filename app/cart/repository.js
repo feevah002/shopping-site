@@ -1,24 +1,18 @@
-const Cart = require("./model")
+const Cart = require("./model");
+let populateQuery = [{
+  path:"items.userId",
+  select: " username "
 
-// to view all Carts
+},{
+  path:"items.productId",
+  select: " prodPrice"
+}]
 exports.cart = async ()=>{
-  let cart = await Cart.find();
-  return cart;
-}
-// to add a new Cart
-exports.newCart = async (cart)=>{
-  let newCart = await Cart.create(cart);
-  return newCart;
-} 
-// to see a particular Cart 
-exports.CartById = async (id)=>{
-  let cartById = await Cart.findById(id);
-  return cartById;
+  let cartItems = await Cart.find({}).populate(populateQuery)
+  return cartItems[0];
 }
 
-// to delete and item
-exports.deleteCart = async (id)=>{
-  let deletecart = Cart.findByIdAndRemove(id);
-  return deletecart;
+exports.addItem = async (item)=>{
+   let newItem = await Cart.create(item);
+   return newItem
 }
-
