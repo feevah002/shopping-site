@@ -49,15 +49,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash())
 
-// passport.use(new LocalStrategy(User.authenticate()))
-// passport.use(new LocalStrategy(User.authenticate()))
-// passport.serializeUser(User.serializeUser())
-// passport.deserializeUser(User.deserializeUser())
+passport.use(new LocalStrategy(User.authenticate()))
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
-passport.use(new LocalStrategy(Seller.authenticate()))
-passport.use(new LocalStrategy(Seller.authenticate()))
-passport.serializeUser(Seller.serializeUser())
-passport.deserializeUser(Seller.deserializeUser())
+// passport.use(new LocalStrategy(Seller.authenticate()))
+// passport.use(new LocalStrategy(Seller.authenticate()))
+// passport.serializeUser(Seller.serializeUser())
+// passport.deserializeUser(Seller.deserializeUser())
 
 
 
@@ -114,6 +114,6 @@ app.listen(PORT, (err)=>{
     console.log(err)
   }
   else{
-    console.log("server started succeccfully")
+    console.log(`server started succeccfully, PORT: ${PORT}`)
   }
 })

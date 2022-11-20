@@ -25,10 +25,15 @@ let ItemSchema = Schema({
   timestamps:true
 })
 const CartSchema = Schema({
+  userId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"User",
+  },
   items:[ItemSchema],
   subTotal:{
     default:0,
-    type: Number
+    type: Number,
+   
   }
 },{
   timestamps: true

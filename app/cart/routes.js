@@ -1,15 +1,12 @@
 const router = require("express").Router();
+const middlwareobj = require("../middleware/index")
 const cartController = require("./controller");
 
-// // user/customer cart roytes
 
+router.get("/meatro/:uid/cart", middlewareObj.isUserLoggedIn, cartController.getCart)
 
-router.get("/meatro/:uid/cart", cartController.getCart)
+router.post("/cart/:pid/add-to-cart", cartController.addItemToCart)
 
-router.post("/meatro/:uid/cart", cartController.addItemToCart)
-
-// router.get("/meatro/:uid/cart/:pid", cartController.findById)
-
-// router.delete("/meatro/:uid/cart/:pid", cartController.findByIdAndRemove)
+router.post("/cart/:pid/", cartController.emptyCart)
 
 module.exports = router

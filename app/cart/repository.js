@@ -1,15 +1,22 @@
 const Cart = require("./model");
 let populateQuery = [{
   path:"items.userId",
-  select: " username "
+  select: "username "
 
 },{
   path:"items.productId",
-  select: " prodPrice"
+  select: "name price"
+},
+,{
+  path:"userId",
+  select: "username"
 }]
 exports.cart = async ()=>{
-  let cartItems = await Cart.find({}).populate(populateQuery)
-  return cartItems[0];
+  let cart = await Cart.find({}).populate(populateQuery)
+  // let loggedUserCart =  allCreatedcarts.find(cart => cart.userId.id == currentUser._id)
+
+  // console.log(loggedUserCart)
+  return cart;
 }
 
 exports.addItem = async (item)=>{

@@ -2,28 +2,33 @@
 <div id = "showpage">
   <div class="container">
     <div class=" row p-4 pb-2 ">
-      <% cart.forEach(cartItem=>{%>
+      <% cart.items.forEach(cartItem=>{%>
         
           <div class="  col-lg-8 col-xs-12 col-sm-12">
             <div class="card" >
-              <img src=" <%= cartItem.prodImage %>" class="card-img-top" alt="...">
+              <img src=" <%= cartItem.image %>" class="card-img-top" alt="...">
               <div class="card-body">
       
-                <p class="card-text"> <a href="/meatro/<%= cartItem.mainItemId %>"> Product Name </a>
+                <p class="card-text"> <a href="/meatro/<%= cartItem.productId.id %>"> Product Name </a>
   
-  
-                  <form action ="/meatro/<%= currentUser._id%>/cart/<%= cartItem.mainItemId %>?_method=delete" method="post">
-  
+                      <% if(currentUser){%>
+                  <form action ="/cart/<%= cartItem.productId.id %>/add-to-cart" method="post">
+                      <input type="number" name="quantity"value = 0>
                     <button class="btn btn-danger"> delete</button>
   
                   </form>
+                  <form action ="/cart/<%= cartItem.productId.id %>/add-to-cart" method="post">
+                      <input type="number" name="quantity" value = <%=cartItem.quantity%>>
+                    <button class="btn btn-danger"> add more</button>
+  
+                  </form>
+                  <%}%>
                 </p>
-                <p> <%= cartItem.prodDesc %></p><!--work on this-->
-                <p> <%= cartItem.prodPrice %></p><!--work on this-->
-                <p> <%= cartItem.prodQuantity %></p><!--work on this-->
-                <p> <%= cartItem.mainItemId%></p><!--work on this-->
-                <p> <%= cartItem.allay%></p><!--work on this-->
-                <%total += cartItem.prodPrice%>
+                <p> <%= cartItem.description %></p><!--work on this-->
+                <p> <%= cartItem.price %></p><!--work on this-->
+                <p> <%= cartItem.quantity %></p><!--work on this-->
+                <p> <%= cartItem.ProductId%></p><!--work on this-->
+        
                 
               </div>
             </div> 
@@ -32,7 +37,8 @@
           <!-- end of column  -->
         
       <%} );%>
-     <p>total: <%= total%></p> 
+      <p><%=cart.subTotal%></p>
+
       
     </div>
       
